@@ -29,3 +29,51 @@ jobs:
         run: |
           docker build -t googolmo/cargo-chef:alpine3.12 ./alpine3.12/ 
           docker push googolmo/cargo-chef:alpine3.12
+  build-bullseye:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PW }}
+      - name: build-image
+        run: |
+          docker build -t googolmo/cargo-chef:bullseye ./bullseye/ 
+          docker push googolmo/cargo-chef:bullseye
+  build-buster:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PW }}
+      - name: build-image
+        run: |
+          docker build -t googolmo/cargo-chef:buster ./buster/ 
+          docker push googolmo/cargo-chef:buster
+  build-slim-bullseye:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PW }}
+      - name: build-image
+        run: |
+          docker build -t googolmo/cargo-chef:slim-bullseye ./slim-bullseye/ 
+          docker push googolmo/cargo-chef:slim-bullseye
+  build-slim-buster:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PW }}
+      - name: build-image
+        run: |
+          docker build -t googolmo/cargo-chef:slim-buster ./slim-buster/ 
+          docker push googolmo/cargo-chef:slim-buster
